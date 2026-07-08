@@ -1,0 +1,2939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CORI YARBROUGH — Transformation Phase Program</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --black: #0A0A0A;
+  --dark: #111111;
+  --card: #161616;
+  --card2: #1a1a1a;
+  --orange: #FF6B00;
+  --orange-dim: rgba(255,107,0,0.12);
+  --orange-border: rgba(255,107,0,0.3);
+  --white: #FFFFFF;
+  --grey: #888888;
+  --grey2: #444444;
+  --grey3: #2a2a2a;
+  --light: #EFEFEF;
+  --green: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--grey2); border-radius: 2px; }
+
+.header {
+  background: var(--dark);
+  border-bottom: 2px solid var(--orange);
+  padding: 0 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 3px;
+  color: var(--orange);
+  line-height: 1;
+}
+.logo span { color: var(--white); }
+.logo-sub {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  color: var(--grey);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.header-right { display: flex; align-items: center; gap: 0.75rem; }
+.badge {
+  background: var(--orange);
+  color: var(--black);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.phase-badge {
+  background: transparent;
+  color: var(--orange);
+  border: 1px solid var(--orange-border);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0A0A0A 0%, #140800 45%, #0A0A0A 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  border-bottom: 1px solid #1c1c1c;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: 'TRANSFORM';
+  position: absolute;
+  right: -40px;
+  top: -15px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 10rem;
+  color: rgba(255,107,0,0.035);
+  letter-spacing: 8px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.hero-inner { max-width: 1280px; margin: 0 auto; }
+.hero-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: 4px;
+  line-height: 0.95;
+  margin-bottom: 0.6rem;
+}
+.hero-name .accent { color: var(--orange); }
+.hero-desc {
+  font-size: 0.8rem;
+  color: var(--grey);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+  line-height: 1.6;
+}
+.hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 3px; }
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.stat-val sup { font-size: 0.9rem; }
+.stat-label { font-size: 0.6rem; color: var(--grey); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; }
+.stat-divider { width: 1px; background: var(--grey2); align-self: stretch; }
+
+.goals-strip {
+  background: linear-gradient(90deg, #140800 0%, #0f0f0f 100%);
+  border-bottom: 1px solid var(--grey3);
+  padding: 0.75rem 1.5rem;
+}
+.goals-strip-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.goal-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.goal-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+.tabs-wrapper {
+  background: var(--dark);
+  border-bottom: 1px solid #1c1c1c;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 60px;
+  z-index: 100;
+}
+.tabs-wrapper::-webkit-scrollbar { display: none; }
+.tabs { max-width: 1280px; margin: 0 auto; display: flex; padding: 0 1.5rem; }
+.tab {
+  padding: 0.9rem 1rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--grey);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+.tab:hover { color: var(--white); }
+.tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+.tab-sub { display: block; font-size: 0.52rem; color: inherit; letter-spacing: 1px; margin-top: 1px; }
+
+.content { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; }
+.section { display: none; }
+.section.active { display: block; }
+
+.section-header { margin-bottom: 1.75rem; }
+.section-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
+.phase-block {
+  background: var(--card);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid #1e1e1e;
+  transition: border-color 0.2s;
+}
+.phase-block:hover { border-color: #2a2a2a; }
+
+.phase-header {
+  background: var(--orange);
+  padding: 0.8rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.phase-header:hover { background: #e86000; }
+.phase-header.dark { background: #1c1c1c; }
+.phase-header.dark:hover { background: #222; }
+.phase-header.warmup-hdr { background: #1a3a1a; border-left: 3px solid var(--green); }
+.phase-header.warmup-hdr:hover { background: #1e421e; }
+.phase-header.cooldown-hdr { background: #0d1a2e; border-left: 3px solid #60a5fa; }
+.phase-header.cooldown-hdr:hover { background: #0f2035; }
+.phase-header.core-hdr { background: #1a1a00; border-left: 3px solid #facc15; }
+.phase-header.core-hdr:hover { background: #1e1e00; }
+
+.phase-header-left { display: flex; align-items: center; gap: 0.75rem; }
+.phase-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--black);
+  line-height: 1;
+  min-width: 20px;
+}
+.phase-label.light { color: var(--orange); }
+.phase-label.green { color: var(--green); }
+.phase-label.blue { color: #60a5fa; }
+.phase-label.yellow { color: #facc15; }
+.phase-title {
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.phase-title.light { color: var(--white); }
+.phase-title.green { color: #86efac; }
+.phase-title.blue { color: #93c5fd; }
+.phase-title.yellow { color: #fde047; }
+.phase-sub { font-size: 0.65rem; color: rgba(0,0,0,0.5); font-weight: 500; }
+.phase-sub.light { color: var(--grey); }
+.phase-sub.green { color: rgba(134,239,172,0.6); }
+.phase-sub.blue { color: rgba(147,197,253,0.6); }
+.phase-sub.yellow { color: rgba(253,224,71,0.6); }
+.phase-toggle {
+  font-size: 1.1rem;
+  color: var(--black);
+  font-weight: 700;
+  transition: transform 0.3s ease;
+  line-height: 1;
+  width: 22px;
+  text-align: center;
+}
+.phase-toggle.light { color: var(--white); }
+.phase-toggle.green { color: var(--green); }
+.phase-toggle.blue { color: #60a5fa; }
+.phase-toggle.yellow { color: #facc15; }
+.phase-toggle.open { transform: rotate(45deg); }
+.phase-body { display: block; }
+.phase-body.collapsed { display: none; }
+
+.pill-section { padding: 1rem 1.25rem 0.85rem; }
+.pill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.5rem; }
+.pill-item {
+  background: #1c1c1c;
+  border-radius: 5px;
+  padding: 0.65rem 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border: 1px solid #252525;
+}
+.pill-item.warm { border-left: 2px solid var(--green); }
+.pill-item.cool { border-left: 2px solid #60a5fa; }
+.pill-text { font-size: 0.75rem; color: var(--light); font-weight: 500; line-height: 1.4; flex: 1; }
+.pill-sets { font-size: 0.65rem; color: var(--grey); margin-top: 2px; }
+
+.ex-section { padding: 0.5rem 1.25rem 0.75rem; }
+.exercise {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #1a1a1a;
+}
+.exercise:last-child { border-bottom: none; }
+.ex-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+.ex-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--orange);
+  min-width: 26px;
+  line-height: 1;
+}
+.ex-info { flex: 1; min-width: 0; }
+.ex-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+.ex-sets-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3px;
+  flex-wrap: wrap;
+}
+.ex-sets { font-size: 0.68rem; color: var(--grey); }
+.rest-pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(255,107,0,0.1);
+  border: 1px solid rgba(255,107,0,0.2);
+  color: var(--orange);
+  padding: 2px 7px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.ex-actions { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--orange-dim);
+  border: 1px solid var(--orange-border);
+  color: var(--orange);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.18s;
+  flex-shrink: 0;
+}
+.video-btn:hover { background: var(--orange); color: var(--black); }
+.video-btn svg { width: 9px; height: 9px; flex-shrink: 0; }
+
+.weight-log {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0.75rem;
+  background: #111;
+  border-radius: 5px;
+  border: 1px solid #222;
+}
+.weight-log-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--grey);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.set-inputs { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; flex: 1; }
+.set-entry { display: flex; align-items: center; gap: 3px; }
+.set-label { font-size: 0.6rem; color: var(--grey2); font-weight: 600; min-width: 18px; }
+.weight-input {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  padding: 4px 6px;
+  width: 58px;
+  text-align: center;
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+.weight-input::-webkit-outer-spin-button,
+.weight-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.weight-input:focus { outline: none; border-color: var(--orange); background: #1e1000; }
+.weight-input::placeholder { color: var(--grey2); font-size: 0.65rem; }
+.unit-tag { font-size: 0.58rem; color: var(--grey); font-weight: 600; }
+.log-note-field {
+  width: 100%;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 4px;
+  color: var(--grey);
+  font-size: 0.72rem;
+  font-family: 'Inter', sans-serif;
+  padding: 5px 8px;
+  resize: none;
+  margin-top: 0.35rem;
+  min-height: 36px;
+  transition: border-color 0.15s;
+}
+.log-note-field:focus { outline: none; border-color: var(--grey2); color: var(--light); }
+.log-note-field::placeholder { color: var(--grey2); }
+
+.core-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem 1rem;
+}
+.core-item {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 5px;
+  padding: 0.75rem;
+}
+.core-item-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+.core-item-name { font-size: 0.78rem; font-weight: 700; color: var(--white); }
+.core-item-sets { font-size: 0.65rem; color: var(--grey); margin-top: 2px; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.info-card {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+.info-card:hover { border-color: #2a2a2a; }
+.info-card-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--orange);
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+.info-card-list { list-style: none; }
+.info-card-list li {
+  font-size: 0.78rem;
+  color: var(--light);
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #1c1c1c;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+.info-card-list li:last-child { border-bottom: none; }
+.info-card-list li::before { content: '▸'; color: var(--orange); font-size: 0.65rem; margin-top: 2px; flex-shrink: 0; }
+
+.macro-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.macro-card {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+}
+.macro-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--orange);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.macro-unit { font-size: 0.85rem; color: var(--grey); }
+.macro-label { font-size: 0.6rem; color: var(--grey); letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.rec-card {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+.rec-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+.rec-title { font-weight: 800; font-size: 0.82rem; margin-bottom: 0.4rem; color: var(--white); letter-spacing: 0.3px; }
+.rec-body { font-size: 0.74rem; color: var(--grey); line-height: 1.65; }
+
+.alert-banner {
+  background: linear-gradient(135deg, #140800 0%, #0f0f0f 100%);
+  border: 1px solid #2a2a2a;
+  border-left: 4px solid var(--orange);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.alert-banner-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; margin-bottom: 0.6rem; }
+.alert-banner-list { list-style: none; }
+.alert-banner-list li { font-size: 0.78rem; color: var(--light); line-height: 1.6; padding: 0.2rem 0; display: flex; gap: 0.5rem; }
+.alert-banner-list li::before { content: '→'; color: var(--orange); flex-shrink: 0; }
+
+.rule-card {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.rule-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--orange);
+  line-height: 1;
+  min-width: 44px;
+  opacity: 0.5;
+}
+.rule-content {}
+.rule-title { font-weight: 800; font-size: 0.85rem; color: var(--white); margin-bottom: 0.35rem; letter-spacing: 0.3px; }
+.rule-body { font-size: 0.75rem; color: var(--grey); line-height: 1.65; }
+
+.timeline-block {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+.timeline-header {
+  background: var(--orange);
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.timeline-header-title { font-weight: 800; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--black); }
+.timeline-header-period { font-size: 0.65rem; color: rgba(0,0,0,0.5); font-weight: 600; }
+.timeline-body { padding: 1rem 1.25rem; }
+.timeline-list { list-style: none; }
+.timeline-list li { font-size: 0.78rem; color: var(--light); line-height: 1.6; padding: 0.25rem 0; display: flex; gap: 0.5rem; }
+.timeline-list li::before { content: '✓'; color: var(--orange); flex-shrink: 0; font-weight: 800; }
+
+.notes-area {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.notes-area-header {
+  background: #1c1c1c;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notes-area-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
+.notes-area-sub { font-size: 0.6rem; color: var(--grey); }
+.notes-body { padding: 0.75rem 1.25rem; }
+.note-entry {
+  background: #111;
+  border: 1px solid #222;
+  border-left: 3px solid var(--orange);
+  border-radius: 4px;
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.74rem;
+  color: var(--light);
+  line-height: 1.6;
+}
+.note-date { font-size: 0.6rem; color: var(--orange); font-weight: 700; letter-spacing: 1px; margin-bottom: 3px; }
+.session-note-input {
+  width: 100%;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 5px;
+  color: var(--light);
+  font-size: 0.78rem;
+  font-family: 'Inter', sans-serif;
+  padding: 0.65rem 0.85rem;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+}
+.session-note-input:focus { outline: none; border-color: var(--orange); }
+.session-note-input::placeholder { color: var(--grey2); }
+.save-note-btn {
+  margin-top: 0.5rem;
+  background: var(--orange);
+  color: var(--black);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.save-note-btn:hover { background: #e86000; }
+
+.log-save-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+.save-log-btn {
+  background: var(--orange);
+  color: var(--black);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Inter', sans-serif;
+  flex-shrink: 0;
+}
+.save-log-btn:hover { background: #e86000; }
+.save-log-btn.saved { background: var(--green); color: var(--black); }
+.saved-tag {
+  font-size: 0.62rem;
+  color: var(--grey);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.saved-tag.show { opacity: 1; color: var(--green); }
+
+.food-log-card {
+  background: var(--card);
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.food-log-header {
+  background: #1c1c1c;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.food-log-title { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
+.food-log-sub { font-size: 0.62rem; color: var(--grey); margin-top: 2px; }
+.food-log-date-row { display: flex; align-items: center; gap: 0.5rem; }
+.food-log-date {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  color: var(--white);
+  font-size: 0.72rem;
+  font-family: 'Inter', sans-serif;
+  padding: 5px 8px;
+}
+.food-log-body { padding: 1.1rem 1.25rem; }
+
+.quick-add-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.quick-add-input {
+  flex: 1;
+  min-width: 180px;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.8rem;
+  font-family: 'Inter', sans-serif;
+  padding: 9px 12px;
+  transition: border-color 0.15s;
+}
+.quick-add-input:focus { outline: none; border-color: var(--orange); }
+.quick-add-input::placeholder { color: var(--grey2); }
+.quick-add-select {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  padding: 9px 10px;
+  cursor: pointer;
+}
+.quick-add-btn {
+  background: var(--orange);
+  color: var(--black);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.quick-add-btn:hover { background: #e86000; }
+
+.meal-tags { display: flex; gap: 0.4rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+.meal-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid #2a2a2a;
+  background: #111;
+  color: var(--grey);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.meal-tag.active { background: var(--orange); color: var(--black); border-color: var(--orange); }
+.meal-tag:hover:not(.active) { border-color: var(--grey2); color: var(--light); }
+
+.food-entries { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.food-entry {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-left: 3px solid var(--orange);
+  border-radius: 5px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.food-entry-left { display: flex; align-items: center; gap: 0.7rem; flex: 1; min-width: 0; }
+.food-entry-meal {
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  background: rgba(255,107,0,0.1);
+  padding: 3px 7px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.food-entry-name { font-size: 0.8rem; color: var(--light); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.food-entry-del {
+  background: none;
+  border: none;
+  color: var(--grey2);
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.food-entry-del:hover { color: #ef4444; }
+.food-log-empty { font-size: 0.78rem; color: var(--grey2); text-align: center; padding: 1.5rem 0; font-style: italic; }
+
+.protein-tracker {
+  background: #1a0a00;
+  border: 1px solid var(--orange-border);
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.protein-tracker-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); white-space: nowrap; }
+.protein-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #2a1505;
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 80px;
+}
+.protein-bar-fill {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.protein-count-input {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  color: var(--orange);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  padding: 5px 8px;
+  width: 60px;
+  text-align: center;
+}
+.protein-count-input:focus { outline: none; border-color: var(--orange); }
+.protein-goal-text { font-size: 0.68rem; color: var(--grey); white-space: nowrap; }
+
+.weight-log-label-btn {
+  background: none;
+  border: none;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--grey);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  padding: 2px 0;
+  transition: color 0.15s;
+}
+.weight-log-label-btn:hover { color: var(--orange); }
+.weight-log-label-btn .hist-caret {
+  font-size: 0.55rem;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.weight-log-label-btn.open .hist-caret { transform: rotate(90deg); }
+.weight-log-label-btn .hist-count {
+  background: var(--orange);
+  color: var(--black);
+  font-size: 0.52rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 8px;
+  min-width: 14px;
+  text-align: center;
+  display: none;
+}
+.weight-log-label-btn.has-history .hist-count { display: inline-block; }
+
+.history-panel {
+  display: none;
+  margin-top: 0.4rem;
+  background: #0d0d0d;
+  border: 1px solid #222;
+  border-radius: 5px;
+  padding: 0.6rem 0.75rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.history-panel.open { display: block; }
+.history-empty { font-size: 0.7rem; color: var(--grey2); font-style: italic; text-align: center; padding: 0.5rem 0; }
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #1c1c1c;
+}
+.history-row:last-child { border-bottom: none; }
+.history-date { font-size: 0.62rem; color: var(--orange); font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
+.history-sets { font-size: 0.68rem; color: var(--light); font-weight: 500; text-align: right; }
+.history-note { font-size: 0.65rem; color: var(--grey); font-style: italic; margin-top: 2px; text-align: right; }
+.history-row-content { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; flex: 1; }
+
+.divider { border: none; border-top: 1px solid #1c1c1c; margin: 1.5rem 0; }
+
+.nutrition-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.nutri-card {
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+.nutri-card.training { background: #140800; border: 1px solid rgba(255,107,0,0.3); }
+.nutri-card.rest { background: #0f0f0f; border: 1px solid #222; }
+.nutri-card-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.9rem; }
+.nutri-card.training .nutri-card-label { color: var(--orange); }
+.nutri-card.rest .nutri-card-label { color: var(--grey); }
+.nutri-macro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+.nutri-macro {
+  background: rgba(0,0,0,0.4);
+  border-radius: 4px;
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+}
+.nutri-macro-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; line-height: 1; }
+.nutri-card.training .nutri-macro-val { color: var(--orange); }
+.nutri-card.rest .nutri-macro-val { color: #aaa; }
+.nutri-macro-label { font-size: 0.57rem; color: var(--grey); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+.nutri-note { font-size: 0.68rem; color: var(--grey); margin-top: 0.65rem; line-height: 1.5; }
+.nutri-card.training .nutri-note { color: rgba(255,107,0,0.75); }
+
+@media (max-width: 700px) {
+  .hero-name { font-size: 2rem; }
+  .macro-row { grid-template-columns: repeat(2,1fr); }
+  .core-grid { grid-template-columns: 1fr; }
+  .nutrition-split { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1rem; }
+  .tab { padding: 0.8rem 0.75rem; font-size: 0.58rem; }
+  .content { padding: 1.25rem 1rem; }
+  .set-inputs { gap: 0.3rem; }
+  .weight-input { width: 50px; }
+  .rule-card { flex-direction: column; gap: 0.25rem; }
+  .rule-num { font-size: 1.8rem; }
+  .stat-divider { display: none; }
+  .goals-strip-inner { gap: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">
+      CRUNCH <span>FITNESS</span>
+      <span class="logo-sub">Lake Nona · Personal Training</span>
+    </div>
+    <div class="header-right">
+      <div class="phase-badge">Transformation Phase</div>
+      <div class="badge">Client Program</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Custom Training Program — Built for You</div>
+    <div class="hero-name">CORI <span class="accent">YARBROUGH</span></div>
+    <div class="hero-desc">
+      Aesthetic muscle development · Shoulder & bicep specialization · Chest mass · 3-Day structured split designed to build a visually balanced, athletic physique.
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-val">3</div>
+        <div class="stat-label">Training Days</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-val">~60<sup>min</sup></div>
+        <div class="stat-label">Per Session</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-val">130<sup>lbs</sup></div>
+        <div class="stat-label">Starting Weight</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-val">3×</div>
+        <div class="stat-label">Phase Focus</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="goals-strip">
+  <div class="goals-strip-inner">
+    <div class="goal-pill"><div class="goal-dot"></div>Bigger, rounder shoulders</div>
+    <div class="goal-pill"><div class="goal-dot"></div>Peaked bicep development</div>
+    <div class="goal-pill"><div class="goal-dot"></div>Eliminate flat chest — build pec thickness &amp; shape</div>
+    <div class="goal-pill"><div class="goal-dot"></div>Look lean, strong &amp; athletic — the scale is secondary</div>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('day1',this)">Day 1<span class="tab-sub">Upper Body</span></button>
+    <button class="tab" onclick="switchTab('day2',this)">Day 2<span class="tab-sub">Lower Body</span></button>
+    <button class="tab" onclick="switchTab('day3',this)">Day 3<span class="tab-sub">Full Body</span></button>
+    <button class="tab" onclick="switchTab('nutrition',this)">Nutrition</button>
+    <button class="tab" onclick="switchTab('cardio',this)">Cardio</button>
+    <button class="tab" onclick="switchTab('recovery',this)">Recovery</button>
+    <button class="tab" onclick="switchTab('rules',this)">Rules &amp; Expectations</button>
+    <button class="tab" onclick="switchTab('notes',this)">Session Notes</button>
+  </div>
+</div>
+
+<div class="content">
+
+<div id="day1" class="section active">
+  <div class="section-header">
+    <div class="section-eyebrow">Training Day 01 · Upper Body</div>
+    <div class="section-title">SHOULDERS · CHEST · BACK · ARMS</div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header warmup-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label green">WU</div>
+        <div>
+          <div class="phase-title green">Warm-Up</div>
+          <div class="phase-sub green">Activation + Scapular Prep · ~8 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle green open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Endless Rope</div>
+              <div class="pill-sets">2 × 30 seconds · Active pull, full range</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=endless+rope+machine+gym+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Scapular Pull-Ups</div>
+              <div class="pill-sets">1 × 8 reps · Dead hang → depress scaps → pause</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=scapular+pull+ups+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Band Pull-Aparts</div>
+              <div class="pill-sets">1 × 15 reps · Squeeze rear delts hard at end</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=band+pull+aparts+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Shoulder CARs</div>
+              <div class="pill-sets">1 × 5 each direction · Slow controlled rotation</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=shoulder+CARs+controlled+articular+rotations+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Thoracic Rotations</div>
+              <div class="pill-sets">1 × 10 each side · Elbows wide, rotate fully</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=thoracic+rotation+mobility+exercise+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label">A</div>
+        <div>
+          <div class="phase-title">Main Workout</div>
+          <div class="phase-sub">Upper Body · Strength + Hypertrophy</div>
+        </div>
+      </div>
+      <div class="phase-toggle open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="ex-section">
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Incline Dumbbell Bench Press</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">4 sets × 8–10 reps</span>
+                <span class="rest-pill">⏱ Rest 90–120 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=incline+dumbbell+bench+press+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e1histbtn" onclick="toggleHistory('d1e1')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e1histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d1e1s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d1e1s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d1e1s3"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S4</span><input class="weight-input" type="number" placeholder="lbs" id="d1e1s4"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e1histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 5/16 — S1: 25lbs, S2–S4: 22.5lbs. Felt strong on the push." id="d1e1note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e1saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e1', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Weighted Assisted Band Pull-Up</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">4 sets × 6–8 reps</span>
+                <span class="rest-pill">⏱ Rest 2–3 min</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=band+assisted+pull+up+weighted+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e2histbtn" onclick="toggleHistory('d1e2')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e2histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d1e2s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d1e2s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d1e2s3"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S4</span><input class="weight-input" type="number" placeholder="lbs" id="d1e2s4"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e2histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Used 10lb vest. Band tension felt right." id="d1e2note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e2saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e2', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">03</div>
+            <div class="ex-info">
+              <div class="ex-name">TRX Inverted Row to Hip Press</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10–12 reps</span>
+                <span class="rest-pill">⏱ Rest 75–90 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=TRX+inverted+row+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e3histbtn" onclick="toggleHistory('d1e3')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e3histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="BW" id="d1e3s1"/></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="BW" id="d1e3s2"/></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="BW" id="d1e3s3"/></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e3histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Bodyweight. Easier than last week." id="d1e3note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e3saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e3', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Half Kneeling Single Arm DB Press</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 8–10 reps each arm</span>
+                <span class="rest-pill">⏱ Rest 75 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=half+kneeling+single+arm+dumbbell+press+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e4histbtn" onclick="toggleHistory('d1e4')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e4histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d1e4s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d1e4s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d1e4s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e4histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 17.5lbs. Left arm slightly weaker — match right." id="d1e4note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e4saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e4', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Cable Lateral Raise</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 12–15 reps each side</span>
+                <span class="rest-pill">⏱ Rest 60–75 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=cable+lateral+raise+shoulder+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e5histbtn" onclick="toggleHistory('d1e5')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e5histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d1e5s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d1e5s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d1e5s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e5histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Slow 3 sec negative. Felt the lateral head working." id="d1e5note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e5saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e5', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Incline Dumbbell Curl</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10–12 reps</span>
+                <span class="rest-pill">⏱ Rest 60–75 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=incline+dumbbell+curl+bicep+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d1e6histbtn" onclick="toggleHistory('d1e6')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d1e6histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d1e6s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d1e6s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d1e6s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1e6histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 15lbs. Arms fully behind body for full stretch." id="d1e6note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1e6saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1e6', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header core-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label yellow">C</div>
+        <div>
+          <div class="phase-title yellow">Core</div>
+          <div class="phase-sub yellow">Anti-Rotation + Compression</div>
+        </div>
+      </div>
+      <div class="phase-toggle yellow open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="core-grid">
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Cable Rotations</div>
+              <div class="core-item-sets">3 × 10–12 reps each side <span class="rest-pill">Rest 45 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=cable+wood+chop+rotation+core+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="weight-log" style="margin-top:0.4rem">
+            <button class="weight-log-label-btn" id="d1core1histbtn" onclick="toggleHistory('d1core1')"><span class="hist-caret">▸</span>Log<span class="hist-count" id="d1core1histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core1s1"/></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core1s2"/></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core1s3"/></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1core1histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1core1saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1core1', this)">SAVE</button>
+          </div>
+        </div>
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Weighted Flutter Kicks</div>
+              <div class="core-item-sets">3 × 20 reps total <span class="rest-pill">Rest 45 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=weighted+flutter+kicks+core+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="weight-log" style="margin-top:0.4rem">
+            <button class="weight-log-label-btn" id="d1core2histbtn" onclick="toggleHistory('d1core2')"><span class="hist-caret">▸</span>Log<span class="hist-count" id="d1core2histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core2s1"/></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core2s2"/></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d1core2s3"/></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d1core2histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d1core2saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d1core2', this)">SAVE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header cooldown-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label blue">CD</div>
+        <div>
+          <div class="phase-title blue">Cool-Down</div>
+          <div class="phase-sub blue">Upper Body Stretch · ~5 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle blue open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Doorway Chest Stretch</div>
+              <div class="pill-sets">30 sec each side · Elbow at 90°, lean forward</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=doorway+chest+stretch+pec+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Overhead Tricep Stretch</div>
+              <div class="pill-sets">30 sec each side · Stand tall, reach down spine</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=overhead+tricep+stretch+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Child's Pose with Side Reach</div>
+              <div class="pill-sets">30 sec each side · Walk hands to each corner</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=child+pose+side+reach+lat+stretch+yoga" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Upper Trap Stretch</div>
+              <div class="pill-sets">30 sec each side · Ear to shoulder, gentle pull</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=upper+trapezius+neck+stretch+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="day2" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Training Day 02 · Lower Body</div>
+    <div class="section-title">GLUTES · HAMSTRINGS · QUADS · HIPS</div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header warmup-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label green">WU</div>
+        <div>
+          <div class="phase-title green">Warm-Up</div>
+          <div class="phase-sub green">Knee, Ankle & Hip Prep · ~10 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle green open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Backward Sled Pull</div>
+              <div class="pill-sets">3 × 20 steps · 45lbs · Upright torso, big steps</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=backward+sled+pull+lower+body+warm+up+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Tibialis Raises</div>
+              <div class="pill-sets">1 × 20 reps · 10lbs · Heels on floor, flex toes up</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=tibialis+raise+anterior+shin+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Knee-Over-Toe Ankle Rocks</div>
+              <div class="pill-sets">1 × 10 each side · 3" forward, slow and controlled</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=knee+over+toe+ankle+rocks+dorsiflexion+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Resisted Terminal Knee Extensions</div>
+              <div class="pill-sets">2 × 15 reps · Band behind knee, full extension</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=terminal+knee+extension+band+TKE+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">90/90 Hip Rotations</div>
+              <div class="pill-sets">1 × 10 each side · Both legs at 90°, rotate hip</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=90+90+hip+rotation+mobility+stretch+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label">A</div>
+        <div>
+          <div class="phase-title">Main Workout</div>
+          <div class="phase-sub">Lower Body · Strength + Hypertrophy</div>
+        </div>
+      </div>
+      <div class="phase-toggle open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="ex-section">
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Barbell Hip Thrust</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">4 sets × 8–10 reps · Bar: 80lbs each side</span>
+                <span class="rest-pill">⏱ Rest 2–3 min</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=barbell+hip+thrust+glutes+form+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e1histbtn" onclick="toggleHistory('d2e1')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d2e1histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d2e1s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d2e1s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d2e1s3"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S4</span><input class="weight-input" type="number" placeholder="lbs" id="d2e1s4"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e1histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Black plates 80lbs/side. Squeeze hard at top for 1 sec." id="d2e1note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e1saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e1', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Goblet Squat Burnout</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 8–10 reps · Go to form failure</span>
+                <span class="rest-pill">⏱ Rest 90 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=goblet+squat+tutorial+form+dumbbell" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e2histbtn" onclick="toggleHistory('d2e2')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d2e2histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d2e2s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d2e2s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d2e2s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e2histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Chest up, heels rooted, full depth." id="d2e2note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e2saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e2', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Single-Leg RDL (Supported)</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10 reps each side</span>
+                <span class="rest-pill">⏱ Rest 90 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=single+leg+RDL+supported+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e3histbtn" onclick="toggleHistory('d2e3')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d2e3histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d2e3s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d2e3s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d2e3s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e3histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Hold rack with free hand. Hip hinge, not a lean." id="d2e3note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e3saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e3', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Side Lunges</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10 reps each side</span>
+                <span class="rest-pill">⏱ Rest 75 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=lateral+side+lunge+tutorial+form+dumbbell" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e4histbtn" onclick="toggleHistory('d2e4')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d2e4histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d2e4s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d2e4s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d2e4s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e4histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Keep chest tall. Track knee over 2nd toe." id="d2e4note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e4saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e4', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Slider Nordic Hamstring Curl</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 12–15 reps</span>
+                <span class="rest-pill">⏱ Rest 90 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=slider+nordic+hamstring+curl+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e5histbtn" onclick="toggleHistory('d2e5')"><span class="hist-caret">▸</span>📝 Reps Completed<span class="hist-count" id="d2e5histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="reps" id="d2e5s1"/><span class="unit-tag">reps</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="reps" id="d2e5s2"/><span class="unit-tag">reps</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="reps" id="d2e5s3"/><span class="unit-tag">reps</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e5histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Bodyweight. Slow eccentric going down — that's the work." id="d2e5note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e5saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e5', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Banded Spanish Squat</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 45 seconds</span>
+                <span class="rest-pill">⏱ Rest 60 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=banded+spanish+squat+tutorial+form+knees" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d2e6histbtn" onclick="toggleHistory('d2e6')"><span class="hist-caret">▸</span>📝 Time Held<span class="hist-count" id="d2e6histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="sec" id="d2e6s1"/><span class="unit-tag">sec</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="sec" id="d2e6s2"/><span class="unit-tag">sec</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="sec" id="d2e6s3"/><span class="unit-tag">sec</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d2e6histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Band around post. Vertical shins, quad burn." id="d2e6note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d2e6saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d2e6', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header core-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label yellow">C</div>
+        <div>
+          <div class="phase-title yellow">Core</div>
+          <div class="phase-sub yellow">Stability + Anti-Rotation</div>
+        </div>
+      </div>
+      <div class="phase-toggle yellow open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="core-grid">
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Russian Twists</div>
+              <div class="core-item-sets">2 × 20 reps total <span class="rest-pill">Rest 40 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=russian+twist+core+tutorial+form+weighted" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Bird Dogs</div>
+              <div class="core-item-sets">2 × 10 reps each side <span class="rest-pill">Rest 40 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=bird+dog+exercise+core+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Plank</div>
+              <div class="core-item-sets">2 × 30–45 seconds <span class="rest-pill">Rest 45 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=plank+proper+form+tutorial+core" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header cooldown-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label blue">CD</div>
+        <div>
+          <div class="phase-title blue">Cool-Down</div>
+          <div class="phase-sub blue">Lower Body Stretch · ~7 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle blue open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Half-Kneeling Hip Flexor Stretch</div>
+              <div class="pill-sets">30 sec each side · Tuck pelvis, sink hips forward</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=half+kneeling+hip+flexor+stretch+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Figure-4 Stretch</div>
+              <div class="pill-sets">30 sec each side · Lying on back, ankle over knee</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=figure+4+piriformis+glute+stretch+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Hamstring Stretch</div>
+              <div class="pill-sets">30 sec each side · Flat on floor, straight leg</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=lying+hamstring+stretch+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Adductor Stretch</div>
+              <div class="pill-sets">30 sec each side · Wide stance, sink to one side</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=adductor+groin+stretch+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Calf Stretch</div>
+              <div class="pill-sets">30 sec each side · Wall push, heel flat to floor</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=standing+calf+stretch+wall+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="day3" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Training Day 03 · Full Body</div>
+    <div class="section-title">LEGS · BACK · SHOULDERS · ARMS</div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header warmup-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label green">WU</div>
+        <div>
+          <div class="phase-title green">Warm-Up</div>
+          <div class="phase-sub green">Full Body Prep · ~8 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle green open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Ankle Dorsiflexion Rocks</div>
+              <div class="pill-sets">1 × 10 each side · Knee forward over toes</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=ankle+dorsiflexion+rocks+mobility+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Weighted Hip Flexions</div>
+              <div class="pill-sets">2 × 12 reps · 13.5lbs · Controlled knee drive</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=weighted+hip+flexion+standing+cable+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Glute Bridges</div>
+              <div class="pill-sets">1 × 15 reps · Drive hips up, squeeze glutes 2 sec</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=glute+bridge+activation+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Cat-Cow</div>
+              <div class="pill-sets">1 × 10 reps · Slow and deliberate, breathe with it</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=cat+cow+spine+mobility+tutorial+yoga" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item warm">
+            <div>
+              <div class="pill-text">Hip Airplanes (Supported)</div>
+              <div class="pill-sets">1 × 8 each side · Hold rail, full hip rotation</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=hip+airplanes+supported+mobility+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label">A</div>
+        <div>
+          <div class="phase-title">Main Workout</div>
+          <div class="phase-sub">Full Body · Strength + Aesthetics</div>
+        </div>
+      </div>
+      <div class="phase-toggle open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="ex-section">
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Hack Squat</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 8–10 reps</span>
+                <span class="rest-pill">⏱ Rest 2–3 min</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=hack+squat+machine+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e1histbtn" onclick="toggleHistory('d3e1')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e1histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e1s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e1s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e1s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e1histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Feet shoulder-width, toes slightly out. Full depth." id="d3e1note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e1saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e1', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Romanian Deadlift</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 8–10 reps · 105lbs total (incl. bar)</span>
+                <span class="rest-pill">⏱ Rest 2–3 min</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=romanian+deadlift+RDL+tutorial+form+barbell" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e2histbtn" onclick="toggleHistory('d3e2')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e2histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e2s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e2s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e2s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e2histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 105lbs total. Soft knee, hinge hip, bar close to shins." id="d3e2note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e2saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e2', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Bulgarian Split Squat — Glute Biased</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10–12 reps each leg</span>
+                <span class="rest-pill">⏱ Rest 90–120 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+glute+biased+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e3histbtn" onclick="toggleHistory('d3e3')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e3histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e3s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e3s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e3s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e3histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Lean torso slightly forward for glute bias. Controlled descent." id="d3e3note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e3saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e3', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Seated Single Arm Lat Pulldown</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10–12 reps each arm · 30lbs</span>
+                <span class="rest-pill">⏱ Rest 75 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=single+arm+lat+pulldown+cable+seated+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e4histbtn" onclick="toggleHistory('d3e4')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e4histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e4s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e4s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e4s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e4histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 30lbs. Elbow drives to hip pocket. Squeeze at bottom." id="d3e4note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e4saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e4', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Side-Lying Lateral Raise</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 12–15 reps · 10lbs (prev: 8–10)</span>
+                <span class="rest-pill">⏱ Rest 60 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=side+lying+lateral+raise+dumbbell+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e5histbtn" onclick="toggleHistory('d3e5')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e5histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e5s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e5s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e5s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e5histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. 10lbs. Slow 3-sec up, 3-sec down. Lateral delt isolation." id="d3e5note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e5saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e5', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <div class="ex-top">
+            <div class="ex-num">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Rolling Tricep Extension</div>
+              <div class="ex-sets-line">
+                <span class="ex-sets">3 sets × 10–12 reps</span>
+                <span class="rest-pill">⏱ Rest 60 sec</span>
+              </div>
+            </div>
+            <div class="ex-actions">
+              <a class="video-btn" href="https://www.youtube.com/results?search_query=rolling+tricep+extension+dumbbell+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+            </div>
+          </div>
+          <div class="weight-log">
+            <button class="weight-log-label-btn" id="d3e6histbtn" onclick="toggleHistory('d3e6')"><span class="hist-caret">▸</span>📝 Weight Log<span class="hist-count" id="d3e6histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" id="d3e6s1"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" id="d3e6s2"/><span class="unit-tag">lbs</span></div>
+              <div class="set-entry"><span class="set-label">S3</span><input class="weight-input" type="number" placeholder="lbs" id="d3e6s3"/><span class="unit-tag">lbs</span></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3e6histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <textarea class="log-note-field" placeholder="Notes... e.g. Elbows in tight. Full extension at top, feel the long head." id="d3e6note"></textarea>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3e6saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3e6', this)">SAVE WEIGHTS</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header core-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label yellow">C</div>
+        <div>
+          <div class="phase-title yellow">Core</div>
+          <div class="phase-sub yellow">Anti-Extension + Rotation</div>
+        </div>
+      </div>
+      <div class="phase-toggle yellow open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="core-grid">
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Dead Bugs</div>
+              <div class="core-item-sets">2 × 15 reps each side <span class="rest-pill">Rest 40 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=dead+bug+exercise+core+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+        <div class="core-item">
+          <div class="core-item-top">
+            <div>
+              <div class="core-item-name">Elevated Plate Rotations</div>
+              <div class="core-item-sets">2 × 15 reps each side <span class="rest-pill">Rest 40 sec</span></div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=elevated+plate+rotation+core+oblique+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="weight-log" style="margin-top:0.4rem">
+            <button class="weight-log-label-btn" id="d3core1histbtn" onclick="toggleHistory('d3core1')"><span class="hist-caret">▸</span>Log<span class="hist-count" id="d3core1histcount">0</span></button>
+            <div class="set-inputs">
+              <div class="set-entry"><span class="set-label">S1</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d3core1s1"/></div>
+              <div class="set-entry"><span class="set-label">S2</span><input class="weight-input" type="number" placeholder="lbs" style="width:50px" id="d3core1s2"/></div>
+            </div>
+          </div>
+          <div class="history-panel" id="d3core1histpanel"><div class="history-empty">No past sessions logged yet</div></div>
+          <div class="log-save-row">
+            <span class="saved-tag" id="d3core1saved">✓ Saved</span>
+            <button class="save-log-btn" onclick="saveExercise('d3core1', this)">SAVE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header cooldown-hdr" onclick="togglePhase(this)">
+      <div class="phase-header-left">
+        <div class="phase-label blue">CD</div>
+        <div>
+          <div class="phase-title blue">Cool-Down</div>
+          <div class="phase-sub blue">Full Body Stretch · ~5 min</div>
+        </div>
+      </div>
+      <div class="phase-toggle blue open">+</div>
+    </div>
+    <div class="phase-body">
+      <div class="pill-section">
+        <div class="pill-grid">
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Pigeon Stretch</div>
+              <div class="pill-sets">30 sec each side · Hip to floor, square hips</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=pigeon+pose+hip+stretch+tutorial+yoga" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Couch Stretch</div>
+              <div class="pill-sets">30 sec each side · Foot on bench behind, hip open</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=couch+stretch+hip+flexor+tutorial+form" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Cross-Body Shoulder Stretch</div>
+              <div class="pill-sets">30 sec each side · Pull arm across chest, relax</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=cross+body+shoulder+stretch+posterior+delt+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+          <div class="pill-item cool">
+            <div>
+              <div class="pill-text">Child's Pose</div>
+              <div class="pill-sets">30 sec · Arms extended, breathe into back</div>
+            </div>
+            <a class="video-btn" href="https://www.youtube.com/results?search_query=child+pose+yoga+relaxation+tutorial" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>WATCH</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="nutrition" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Your Fueling Strategy — Built Around Your Goals</div>
+    <div class="section-title">NUTRITION PROGRAM</div>
+  </div>
+
+  <div class="food-log-card">
+    <div class="food-log-header">
+      <div>
+        <div class="food-log-title">📝 Today's Food Log</div>
+        <div class="food-log-sub">Quick add — no calorie counting · change the date above to see past days</div>
+      </div>
+      <div class="food-log-date-row">
+        <input type="date" class="food-log-date" id="foodLogDate"/>
+      </div>
+    </div>
+    <div class="food-log-body">
+
+      <div class="meal-tags" id="mealTags">
+        <button class="meal-tag active" data-meal="Breakfast" onclick="selectMeal(this)">🌅 Breakfast</button>
+        <button class="meal-tag" data-meal="Snack" onclick="selectMeal(this)">🍎 Snack</button>
+        <button class="meal-tag" data-meal="Lunch" onclick="selectMeal(this)">🍽️ Lunch</button>
+        <button class="meal-tag" data-meal="Pre-Workout" onclick="selectMeal(this)">⚡ Pre-Workout</button>
+        <button class="meal-tag" data-meal="Post-Workout" onclick="selectMeal(this)">💪 Post-Workout</button>
+        <button class="meal-tag" data-meal="Dinner" onclick="selectMeal(this)">🌙 Dinner</button>
+        <button class="meal-tag" data-meal="Before Bed" onclick="selectMeal(this)">🌃 Before Bed</button>
+      </div>
+
+      <div class="quick-add-row">
+        <input type="text" class="quick-add-input" id="foodInput" placeholder="What did you eat? e.g. Chicken breast + rice + avocado" onkeypress="if(event.key==='Enter')addFood()"/>
+        <button class="quick-add-btn" onclick="addFood()">+ ADD</button>
+      </div>
+
+      <div class="food-entries" id="foodEntries">
+        <div class="food-log-empty" id="foodEmptyMsg">No meals logged yet today — add your first one above</div>
+      </div>
+
+      <div class="protein-tracker">
+        <span class="protein-tracker-label">🥩 Protein Today</span>
+        <input type="number" class="protein-count-input" id="proteinCount" placeholder="0" onchange="updateProteinBar()" oninput="updateProteinBar()"/>
+        <div class="protein-bar-track"><div class="protein-bar-fill" id="proteinBarFill"></div></div>
+        <span class="protein-goal-text" id="proteinGoalText">/ 140g goal</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-banner-label">🎯 The Foundation — What Your Nutrition Has to Do</div>
+    <ul class="alert-banner-list">
+      <li>Your goal is to look more muscular and defined — not to lose weight. The scale is not your metric. The mirror is.</li>
+
+      <li>To build bigger shoulders and biceps and fill out your chest, your body needs a slight caloric surplus on training days — you can't build from nothing.</li>
+      <li>Protein is the non-negotiable. It is the literal raw material your muscles are made of. Miss protein, and you will not grow — period.</li>
+      <li>You are not on a diet. You are on a building program. Those require opposite strategies.</li>
+    </ul>
+  </div>
+
+  <div class="nutrition-split">
+    <div class="nutri-card training">
+      <div class="nutri-card-label">🏋️ Training Days — Build Mode</div>
+      <div class="nutri-macro-grid">
+        <div class="nutri-macro"><div class="nutri-macro-val">2,050<span style="font-size:0.75rem"> kcal</span></div><div class="nutri-macro-label">Calories</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">140<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Protein</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">220<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Carbs</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">65<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Fats</div></div>
+      </div>
+      <div class="nutri-note">~150 kcal above maintenance — enough surplus to build lean muscle without unnecessary fat gain.</div>
+    </div>
+    <div class="nutri-card rest">
+      <div class="nutri-card-label">😴 Rest Days — Maintain & Recover</div>
+      <div class="nutri-macro-grid">
+        <div class="nutri-macro"><div class="nutri-macro-val">1,800<span style="font-size:0.75rem"> kcal</span></div><div class="nutri-macro-label">Calories</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">130<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Protein</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">180<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Carbs</div></div>
+        <div class="nutri-macro"><div class="nutri-macro-val">60<span style="font-size:0.75rem">g</span></div><div class="nutri-macro-label">Fats</div></div>
+      </div>
+      <div class="nutri-note" style="color:var(--grey)">Maintenance calories. Keep protein high on rest days — your muscles are still growing.</div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">🥩 Protein — Your #1 Priority Every Day</div>
+      <ul class="info-card-list">
+        <li>Target: 140g on training days · 130g on rest days — split across 4–5 meals</li>
+        <li>Chicken breast or ground turkey — 5–6oz per main meal</li>
+        <li>Salmon 2–3x per week — protein + omega-3 anti-inflammatory combo</li>
+        <li>Eggs (2–3 whole) + egg whites (3–4) — the most complete amino acid profile available</li>
+        <li>Greek yogurt (0%, 150–200g) — fast snack, ~17g protein per cup</li>
+        <li>Protein shake — 1 scoop within 30 min after training, non-negotiable</li>
+        <li>Cottage cheese before bed — casein protein that works while you sleep to build muscle</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">🌾 Carbohydrates — Your Training Fuel</div>
+      <ul class="info-card-list">
+        <li>Do not cut carbs — they are what powers your workouts and drives muscle fullness</li>
+        <li>Pre-training (60–90 min before): 1 cup white rice + protein source</li>
+        <li>Post-training (within 30 min): banana + protein shake for fast glycogen reload</li>
+        <li>Oats, sweet potato, white rice, pasta — your main carb sources throughout the day</li>
+        <li>Fruit (banana, mango, berries, pineapple) — fast carbs ideal around training</li>
+        <li>On rest days, bring carbs down to ~180g but keep them present — recovery still requires fuel</li>
+        <li>Avoid cutting carbs at night if you trained that day — that's when recovery starts</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">🥑 Fats — Hormones, Joints & Recovery</div>
+      <ul class="info-card-list">
+        <li>Healthy fats support the hormones responsible for muscle growth — don't fear them</li>
+        <li>Avocado — ½ per day with meals, great on rice bowls and wraps</li>
+        <li>Extra virgin olive oil — 1–2 tbsp cooking or salad dressing</li>
+        <li>Almonds or mixed nuts — 1 small handful (30g) as a snack, not a full meal</li>
+        <li>Natural peanut butter — 1.5 tbsp with oats or a rice cake is perfect</li>
+        <li>Salmon — your best source of fat + protein combined</li>
+        <li>Keep fats lower pre-training — they slow digestion and blunt the energy response</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">⏰ Daily Meal Layout — Training Day Structure</div>
+      <ul class="info-card-list">
+        <li>🌅 <strong style="color:var(--orange)">Breakfast</strong>: Oats 70g + 3 eggs + fruit + black coffee</li>
+        <li>☀️ <strong style="color:var(--orange)">Mid-Morning</strong>: Greek yogurt + banana or handful of almonds</li>
+        <li>🍽️ <strong style="color:var(--orange)">Lunch</strong>: Chicken 5oz + rice 1 cup + roasted vegetables + ½ avocado</li>
+        <li>⚡ <strong style="color:var(--orange)">Pre-Training</strong> (60–90 min out): ½ cup rice + lean protein, or shake + banana</li>
+        <li>💪 <strong style="color:var(--orange)">Post-Training</strong> (within 30 min): 1 scoop protein + simple fruit</li>
+        <li>🌙 <strong style="color:var(--orange)">Dinner</strong>: Salmon or lean beef 5oz + sweet potato + green salad</li>
+        <li>🌃 <strong style="color:var(--orange)">Before Bed</strong>: Cottage cheese 100g + small handful of nuts</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">💧 Hydration — Daily Standard</div>
+      <ul class="info-card-list">
+        <li>Minimum 3–3.5L of water daily — more on training days</li>
+        <li>First 16oz immediately upon waking before coffee or food</li>
+        <li>Sip water consistently during training — don't wait until you're thirsty</li>
+        <li>Add electrolytes (LMNT or Liquid IV) on days with intense training sessions</li>
+        <li>Pale yellow urine = well hydrated. Dark yellow = drink more, now</li>
+        <li>Avoid excessive caffeine after 2pm — poor sleep = no muscle growth</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">🚫 Common Mistakes to Avoid</div>
+      <ul class="info-card-list">
+        <li>Eating too little to "stay lean" — that kills the muscle you're trying to build</li>
+        <li>Skipping the post-workout meal — the 30-minute window is real, use it</li>
+        <li>Not hitting protein on rest days — your muscles rebuild on those days, not training days</li>
+        <li>Relying on caffeine over food for energy — crash at the gym guarantees bad sessions</li>
+        <li>Liquid calories (juice, sweetened drinks, flavored lattes) displacing your real nutrition</li>
+        <li>Eating perfectly Monday–Friday and undereating on weekends — your body doesn't take days off growing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="cardio" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Cardiovascular Strategy — Muscle-First Approach</div>
+    <div class="section-title">CARDIO PROGRAM</div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-banner-label">⚠️ Understand This First — It Changes Everything</div>
+    <ul class="alert-banner-list">
+      <li>Your goal is to build muscle and look more defined. Excessive cardio directly competes with that goal — it burns the calories your muscles need to grow.</li>
+      <li>Cardio is kept minimal and strategic — it supports heart health, conditioning, and a small extra calorie burn without sabotaging your muscle gains.</li>
+      <li>You are not doing cardio to lose weight. You are doing it to stay conditioned and support body composition while muscle builds.</li>
+    </ul>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">🚶 Incline Treadmill Walk — Your Primary Cardio Tool</div>
+      <ul class="info-card-list">
+        <li><strong style="color:var(--orange)">Maximum 2x per week</strong> — more than this competes with muscle growth</li>
+        <li>20–25 minutes after your weight training session, never before</li>
+        <li>Incline: 8–10% · Speed: 3.0–3.5 mph · Stay conversational</li>
+        <li>Heart rate target: 120–135 bpm (Zone 2) — fat-burning range without muscle breakdown</li>
+        <li>If you feel exhausted before starting — skip it. Your weights session is always the priority</li>
+        <li>Best placed after Day 1 or Day 3 sessions if you have the energy</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">❌ What to Avoid — Cardio That Kills Gains</div>
+      <ul class="info-card-list">
+        <li>HIIT, sprint intervals, or any high-intensity cardio — completely counterproductive to your goals right now</li>
+        <li>Cardio before weight training — you need 100% energy for your lifting</li>
+        <li>Long steady-state cardio (45+ minutes) on top of training sessions</li>
+        <li>Adding cardio sessions on rest days "to burn extra" — rest days are for muscle synthesis, not burning</li>
+        <li>Any Zone 4–5 work (155+ bpm) for extended periods — signals your body to catabolize muscle for fuel</li>
+        <li>The elliptical, Stairmaster, or cycling 5+ days per week is not cardio — it's interference training for your goals</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">📅 Weekly Cardio Layout</div>
+      <ul class="info-card-list">
+        <li>Day 1 (Upper): optional 20 min incline walk post-session if energy allows</li>
+        <li>Day 2 (Lower): no cardio — lower body sessions are your most demanding</li>
+        <li>Day 3 (Full Body): optional 20 min incline walk post-session</li>
+        <li>Off days: walk casually if you want, but no structured cardio</li>
+        <li>Total weekly cardio: 40 minutes maximum — intentional, not excessive</li>
+        <li><strong style="color:var(--orange)">Your physique will change from the weights and nutrition, not from cardio volume.</strong></li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">🎯 Heart Rate Zones — Know Where You Should Be</div>
+      <ul class="info-card-list">
+        <li>🟢 <strong style="color:#22c55e">Zone 2 (120–135 bpm)</strong> — your target zone for all cardio: fat burning, recovery, no muscle loss</li>
+        <li>🟡 Zone 3 (135–155 bpm) — acceptable on occasion, shouldn't be sustained</li>
+        <li>🔴 Zone 4–5 (155+ bpm) — AVOID for your current phase. This is where muscle catabolism accelerates</li>
+        <li>Use a smartwatch or the treadmill heart rate monitor to stay in the right zone</li>
+        <li>If you go above 140 bpm on the treadmill, lower the incline immediately</li>
+        <li>Breathing should be controlled — if you can't hold a conversation, it's too hard for this phase</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="recovery" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Rest, Repair & Grow — Where the Real Work Happens</div>
+    <div class="section-title">RECOVERY PROGRAM</div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-banner-label">💡 The Truth About Building Muscle</div>
+    <ul class="alert-banner-list">
+      <li>You do not build muscle in the gym. You damage it there. You build it during recovery — specifically during sleep.</li>
+      <li>Without proper recovery, the food you eat and the training you do produce a fraction of the results they should.</li>
+      <li>Recovery is not optional. For someone building muscle from scratch, it is equally important as the training itself.</li>
+    </ul>
+  </div>
+
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="rec-icon">😴</div>
+      <div class="rec-title">Sleep — Your Primary Anabolic Tool</div>
+      <div class="rec-body">Human growth hormone (HGH) peaks during the first 90 minutes of deep sleep. This is when your body repairs muscle tissue and drives hypertrophy. Target 7–9 hours every night, especially after training days. Consistent sleep deprivation raises cortisol, blocks protein synthesis, and can erase a week's worth of training gains in 3–4 poor nights. Dark room, cool temperature, no screens 30 minutes before bed.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">⚡</div>
+      <div class="rec-title">Recovery Machines at Crunch — Use Them</div>
+      <div class="rec-body">Compression boots: 15–20 minutes after lower body sessions to flush lactic acid and reduce swelling. Massage gun: targeted work on chest, shoulders, biceps, and quads post-training — 60–90 seconds per muscle group. HydroMassage: use on Fridays or after particularly demanding sessions. These tools accelerate recovery meaningfully — they're available to you at Lake Nona, so take advantage consistently.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">🧘</div>
+      <div class="rec-title">Mobility Work — Protect Your Shoulders & Chest</div>
+      <div class="rec-body">Building the chest and shoulders means placing high demand on anterior shoulder structures. Tight pecs can cause internal shoulder rotation, which leads to impingement over time. Spend 10 minutes 2–3 times per week on thoracic extension over a foam roller, doorway chest stretches, and shoulder external rotation work. This keeps your training sustainable long-term and improves the way your upper body looks structurally — shoulders back, chest open, standing tall.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">🍽️</div>
+      <div class="rec-title">Nutrition Timing for Recovery</div>
+      <div class="rec-body">Post-training protein within 30 minutes is the most critical nutrition window in your program. Miss this consistently and your recovery pace drops significantly. Your pre-bed cottage cheese provides slow-digesting casein protein that feeds your muscles through the night — don't skip it. If you train at night, still eat — the meal timing myth of "no carbs at night" is not relevant when you've just trained. Fuel the recovery.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">🧂</div>
+      <div class="rec-title">Stress & Cortisol Management</div>
+      <div class="rec-body">Elevated cortisol from chronic stress directly blocks the muscle-building signal from training. It tells your body to store fat and break down muscle — the exact opposite of your goal. Keep your training session to under 75 minutes. Don't add cardio on days where you're already stressed or underslept. Deep breathing between sets (4 counts in, 4 hold, 4 out) has measurable cortisol-lowering effects. The gym should feel like a release, not another obligation.</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">📆</div>
+      <div class="rec-title">Weekly Recovery Structure</div>
+      <div class="rec-body">3 training days, 4 recovery days — this is intentional. Your rest days are not wasted days. They are muscle-synthesis days. On off days: light walking is fine, full rest is fine, aggressive cardio is not fine. Saturday and Sunday should be true recharge time — eat your maintenance calories, sleep well, do nothing demanding. You'll come back stronger on Monday. That's how progressive overload works over time.</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="alert-banner" style="border-left-color:#ef4444;">
+    <div class="alert-banner-label" style="color:#ef4444;">🚨 Warning Signs You're Underrecovering</div>
+    <ul class="alert-banner-list">
+      <li style="color:#fca5a5;">Weights you hit last week feel impossible this week without a clear reason</li>
+      <li style="color:#fca5a5;">You wake up tired despite 7+ hours of sleep consistently</li>
+      <li style="color:#fca5a5;">Persistent joint soreness (not muscle soreness — joint pain) in shoulders, elbows, or knees</li>
+      <li style="color:#fca5a5;">Low motivation and dreading the gym multiple days in a row</li>
+      <li style="color:#fca5a5;">Loss of appetite or mood changes outside of normal life stress</li>
+      <li style="color:var(--orange);font-weight:700;">If 3+ of these apply at the same time: take 2 full rest days, eat more, report back. Pushing through overtraining sets you back weeks, not days.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="rules" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Non-Negotiables — Read This Before Every Training Block</div>
+    <div class="section-title">RULES & REALISTIC EXPECTATIONS</div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-banner-label">📌 The Honest Foundation — Set Expectations Right Now</div>
+    <ul class="alert-banner-list">
+      <li>Building visible, meaningful muscle takes 8–16 weeks of consistent work — not 2 weeks. Not 4. Plan accordingly.</li>
+      <li>You will not see dramatic physical changes in the first 2–3 weeks. What you will notice is strength going up, which means it's working.</li>
+      <li>The physique you're building requires patience, consistency, and trusting the process on the days you don't feel like showing up.</li>
+    </ul>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">01</div>
+    <div class="rule-content">
+      <div class="rule-title">The Scale Is Not Your Measurement Tool — Stop Using It as One</div>
+      <div class="rule-body">You said it yourself: you don't care how much you weigh. Hold yourself to that. Muscle is denser than fat. As you build muscle and possibly shed some fat simultaneously, the scale may go up, stay flat, or fluctuate daily based on water, food timing, and hormones. None of that tells you whether you're making progress. Progress looks like: clothes fitting differently, shoulders looking rounder, biceps having more shape, chest looking more full in a tank top. Take monthly progress photos, same lighting, same outfit, same time of day. That is your metric.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">02</div>
+    <div class="rule-content">
+      <div class="rule-title">Progressive Overload Is the Only Thing That Guarantees You Grow</div>
+      <div class="rule-body">Your body adapts to stress and becomes more efficient at it. If you do the same weight for the same reps every single week, your body has no reason to grow — it's already adapted. You must progressively challenge your muscles over time. That means: adding 2.5–5lbs when you hit the top of your rep range easily, adding an extra rep before jumping in weight, or improving your control and tempo. The weight logs in this program exist for this exact reason — track what you lift every session so you can see whether you're moving forward or stalling.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">03</div>
+    <div class="rule-content">
+      <div class="rule-title">Consistency Beats Perfection — Showing Up Matters More Than Being Perfect</div>
+      <div class="rule-body">You will have sessions where your energy is low, you're not hitting your numbers, or life got in the way. A mediocre workout is infinitely better than no workout. Don't let the perfect be the enemy of the good. Complete all 3 training days per week, every week, for 12 weeks — even if some sessions are just 70% of your best. That consistency is what compounds into real physical change. What kills programs is skipping two weeks because one week wasn't perfect.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">04</div>
+    <div class="rule-content">
+      <div class="rule-title">Form First, Weight Second — Always</div>
+      <div class="rule-body">The exercises in this program are chosen specifically to target your goals. Incline press builds your upper chest. Incline curls stretch the long head of the bicep for peak development. Cable lateral raises isolate the medial deltoid for shoulder width. But only if done correctly. Using more weight than you can control doesn't build the muscle — it builds momentum and injures joints. If you're cheating the movement to complete the reps, the weight is too heavy. Drop it, nail the form, then build back up.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">05</div>
+    <div class="rule-content">
+      <div class="rule-title">Your Chest Won't Change Without Consistent Upper Chest Work and Adequate Protein</div>
+      <div class="rule-body">A flat or underdeveloped chest in women is primarily a training and nutrition issue — not a body type issue. The upper pec (clavicular head) responds extremely well to incline pressing. But it requires: progressive overload on that incline press week over week, sufficient protein to actually rebuild the muscle fibers damaged in training, and time — 12–16 weeks minimum to see meaningful thickness. This is fixable. But it requires you to prioritize the incline press, eat your protein, and be patient.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">06</div>
+    <div class="rule-content">
+      <div class="rule-title">You Will Not Bulk Up — You Will Look Athletic and Defined</div>
+      <div class="rule-body">Women do not have the testosterone levels required to build bulky, thick muscle mass the way men do. What strength training does for women: creates shape, definition, and proportion. The "toned" look that most women want IS muscle — just smaller amounts of it sitting underneath lower body fat. Building bigger shoulders creates an hourglass appearance. Building biceps creates definition in the arm. Building chest creates fullness. None of that is bulky. All of that is what you're going for.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">07</div>
+    <div class="rule-content">
+      <div class="rule-title">Realistic Timeline — What to Expect Week by Week</div>
+      <div class="rule-body">Weeks 1–2: Strength gains are neurological. Your body is learning the movements. You'll feel stronger quickly, but visible changes haven't started yet. This is normal. Weeks 3–4: Training feels more natural. Weights start going up. Muscle tissue is actively being remodeled — still not fully visible yet. Weeks 5–8: Visible changes begin. Shoulder definition increases. Bicep shape appears. Upper chest starts to fill. This is when the work becomes visible. Weeks 8–12: Significant transformation. Shape, proportion, and definition are noticeably different. Photos side-by-side from week 1 will look like a different person.</div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-num">08</div>
+    <div class="rule-content">
+      <div class="rule-title">Sleep and Protein Are Not Optional — They Are the Program</div>
+      <div class="rule-body">You can follow this workout to the letter and still see minimal results if you're sleeping 5 hours and eating 80g of protein per day. Sleep is when growth hormone releases and muscle fibers repair and grow thicker. Protein is the building block those fibers are rebuilt from. Without both, you are training hard for significantly reduced results. Treat sleep and protein with the same seriousness as showing up to the gym. They are not lifestyle bonuses — they are core components of the program.</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="timeline-block">
+    <div class="timeline-header">
+      <div>
+        <div class="timeline-header-title">Phase 1: Transformation</div>
+        <div class="timeline-header-period">Weeks 1–12 · Current Phase</div>
+      </div>
+    </div>
+    <div class="timeline-body">
+      <ul class="timeline-list">
+        <li>Master the 3-day split and all movement patterns before adding load</li>
+        <li>Build progressive strength on incline press, pull-ups, and lateral raises every 1–2 weeks</li>
+        <li>Hit protein targets 6 out of 7 days — consistency, not perfection</li>
+        <li>Track weight used for every exercise every session — this is your progress data</li>
+        <li>Take photos at Week 1, Week 4, Week 8, and Week 12 — same conditions each time</li>
+        <li>Check in with your coach at Week 6 to reassess load and volume</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="timeline-block">
+    <div class="timeline-header">
+      <div>
+        <div class="timeline-header-title">Phase 2: Intensification</div>
+        <div class="timeline-header-period">Weeks 13–20 · Coming Next</div>
+      </div>
+    </div>
+    <div class="timeline-body">
+      <ul class="timeline-list">
+        <li>Transition to 4-day split with increased volume on shoulders and arms</li>
+        <li>Introduce advanced techniques: drop sets, slow eccentrics, mechanical drop sets</li>
+        <li>Add unassisted pull-ups as a goal — you will be close by week 12</li>
+        <li>Nutrition adjusts upward to support higher volume and intensity</li>
+        <li>Assess body composition formally and compare to starting point</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="notes" class="section">
+  <div class="section-header">
+    <div class="section-eyebrow">Training Log — Your Personal Record</div>
+    <div class="section-title">SESSION NOTES</div>
+  </div>
+
+  <div class="notes-area">
+    <div class="notes-area-header">
+      <div class="notes-area-title">Existing Notes</div>
+      <div class="notes-area-sub">Logged from previous sessions</div>
+    </div>
+    <div class="notes-body">
+      <div class="note-entry">
+        <div class="note-date">5/16/26 · 11:21 AM — Day 1 Upper Body</div>
+        25lbs on incline chest press for the first set only — last 3 sets dropped to 22.5lbs. Movement felt good overall. Something to build on.
+      </div>
+    </div>
+  </div>
+
+  <div class="notes-area">
+    <div class="notes-area-header">
+      <div class="notes-area-title">Add a Session Note</div>
+      <div class="notes-area-sub">Log how the session felt, weights used, anything to remember</div>
+    </div>
+    <div class="notes-body">
+      <textarea class="session-note-input" id="newNote" placeholder="e.g. 5/20 — Day 2. Hip thrusts felt strong at 80lbs/side. Goblet squat at 35lbs was a good challenge. Left glute still catching up..."></textarea>
+      <button class="save-note-btn" onclick="saveNote()">SAVE NOTE</button>
+      <div id="notesSaved" style="margin-top:0.75rem;"></div>
+    </div>
+  </div>
+
+  <div class="alert-banner" style="margin-top:1rem;">
+    <div class="alert-banner-label">📋 What to Track Every Session</div>
+    <ul class="alert-banner-list">
+      <li>Weight used for each set of each exercise — this is how you prove progression over time</li>
+      <li>How many reps you actually completed vs. the target (e.g. "got 9, target was 10")</li>
+      <li>How you felt overall — energy, soreness, mental focus</li>
+      <li>Any technique notes — what clicked, what needs work</li>
+      <li>Questions for your coach — bring them to your next session, don't let them pile up</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<script>
+function switchTab(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function togglePhase(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.phase-toggle');
+  if (body.classList.contains('collapsed')) {
+    body.classList.remove('collapsed');
+    toggle.classList.add('open');
+  } else {
+    body.classList.add('collapsed');
+    toggle.classList.remove('open');
+  }
+}
+
+/* ════════════════════ STORAGE HELPERS ════════════════════ */
+// Connects to the Google Sheet backend so data syncs across every device.
+const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycby8mwQ9QDkvZySo7m6GzldVEpii1YkPJvi_9OV1uWMoOPvdvSoLgJZsZrHtAtN3eTY/exec';
+
+let STORAGE_BROKEN = false;
+let ALL_VALUES_CACHE = null;
+
+function showStorageWarning() {
+  if (STORAGE_BROKEN) return;
+  STORAGE_BROKEN = true;
+  const banner = document.createElement('div');
+  banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#7f1d1d;color:#fff;font-size:0.75rem;font-weight:700;text-align:center;padding:10px;z-index:9999;font-family:Inter,sans-serif;';
+  banner.textContent = '⚠ Saving isn\'t connecting right now. Check your internet connection and try again.';
+  document.body.appendChild(banner);
+}
+function clearStorageWarning() {
+  STORAGE_BROKEN = false;
+  const existing = document.querySelector('div[style*="position:fixed;bottom:0"]');
+  if (existing) existing.remove();
+}
+
+async function loadAllValuesCache() {
+  try {
+    const res = await fetch(SHEET_API_URL + '?action=getall');
+    const data = await res.json();
+    ALL_VALUES_CACHE = (data && data.values) ? data.values : {};
+    clearStorageWarning();
+  } catch (e) {
+    console.error('Initial load failed', e);
+    ALL_VALUES_CACHE = {};
+    showStorageWarning();
+  }
+}
+
+async function storageGet(key) {
+  if (ALL_VALUES_CACHE && Object.prototype.hasOwnProperty.call(ALL_VALUES_CACHE, key)) {
+    return ALL_VALUES_CACHE[key];
+  }
+  try {
+    const res = await fetch(SHEET_API_URL + '?action=get&key=' + encodeURIComponent(key));
+    const data = await res.json();
+    return data && data.value !== undefined ? data.value : null;
+  } catch (e) {
+    console.error('Storage read failed for', key, e);
+    return null;
+  }
+}
+
+async function storageSet(key, value) {
+  try {
+    const res = await fetch(SHEET_API_URL + '?action=set&key=' + encodeURIComponent(key) + '&value=' + encodeURIComponent(value));
+    const data = await res.json();
+    if (data && data.success) {
+      if (ALL_VALUES_CACHE) ALL_VALUES_CACHE[key] = value;
+      clearStorageWarning();
+      return true;
+    }
+    showStorageWarning();
+    return false;
+  } catch (e) {
+    console.error('Storage save failed for', key, e);
+    showStorageWarning();
+    return false;
+  }
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+async function saveExercise(exKey, btn) {
+  const inputs = document.querySelectorAll('[id^="' + exKey + 's"], [id^="' + exKey + 'note"]');
+  const currentSets = {};
+  const snapshot = [];
+  let noteText = '';
+
+  inputs.forEach(input => {
+    if (input.id.includes('note')) {
+      noteText = input.value.trim();
+      currentSets[input.id] = input.value;
+    } else {
+      currentSets[input.id] = input.value;
+      if (input.value !== '') {
+        const setLabelEl = input.parentElement ? input.parentElement.querySelector('.set-label') : null;
+        const setLabel = setLabelEl ? setLabelEl.textContent : '';
+        snapshot.push({ label: setLabel, value: input.value });
+      }
+    }
+  });
+
+  const storageKey = 'cori_exercise:' + exKey;
+  const existingRaw = await storageGet(storageKey);
+  const existing = existingRaw ? JSON.parse(existingRaw) : { history: [] };
+  const history = existing.history || [];
+
+  if (snapshot.length > 0 || noteText) {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' });
+    const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    history.unshift({ date: dateStr, time: timeStr, sets: snapshot, note: noteText });
+  }
+
+  const record = { sets: currentSets, history: history };
+  const saved = await storageSet(storageKey, JSON.stringify(record));
+
+  updateHistoryCount(exKey, history.length);
+  const panel = document.getElementById(exKey + 'histpanel');
+  if (panel && panel.classList.contains('open')) renderHistoryFromRecord(exKey, record);
+
+  const tag = document.getElementById(exKey + 'saved');
+  const originalText = btn.textContent;
+  if (saved) {
+    btn.classList.add('saved');
+    btn.textContent = '✓ SAVED';
+    if (tag) tag.classList.add('show');
+  } else {
+    btn.textContent = '⚠ RETRY';
+  }
+  setTimeout(() => {
+    btn.classList.remove('saved');
+    btn.textContent = originalText;
+    if (tag) tag.classList.remove('show');
+  }, 1800);
+}
+
+async function loadAllWeights() {
+  const exKeys = new Set();
+  document.querySelectorAll('.weight-log-label-btn').forEach(btn => {
+    exKeys.add(btn.id.replace('histbtn', ''));
+  });
+
+  for (const exKey of exKeys) {
+    const raw = await storageGet('cori_exercise:' + exKey);
+    if (!raw) continue;
+    const record = JSON.parse(raw);
+    if (record.sets) {
+      Object.keys(record.sets).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = record.sets[id];
+      });
+    }
+    updateHistoryCount(exKey, (record.history || []).length);
+  }
+}
+
+async function toggleHistory(exKey) {
+  const panel = document.getElementById(exKey + 'histpanel');
+  const btn = document.getElementById(exKey + 'histbtn');
+  if (!panel) return;
+  const isOpen = panel.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', isOpen);
+  if (isOpen) {
+    panel.innerHTML = '<div class="history-empty">Loading...</div>';
+    const raw = await storageGet('cori_exercise:' + exKey);
+    const record = raw ? JSON.parse(raw) : { history: [] };
+    renderHistoryFromRecord(exKey, record);
+  }
+}
+
+function renderHistoryFromRecord(exKey, record) {
+  const panel = document.getElementById(exKey + 'histpanel');
+  if (!panel) return;
+  const history = record.history || [];
+
+  if (history.length === 0) {
+    panel.innerHTML = '<div class="history-empty">No past sessions logged yet</div>';
+    return;
+  }
+
+  panel.innerHTML = history.map(h => {
+    const setsText = h.sets.length
+      ? h.sets.map(s => (s.label ? s.label + ': ' : '') + s.value + (isNaN(parseFloat(s.value)) ? '' : 'lbs')).join(' · ')
+      : '';
+    const noteHtml = h.note ? '<div class="history-note">"' + escapeHtml(h.note) + '"</div>' : '';
+    return '<div class="history-row">' +
+             '<span class="history-date">' + h.date + ' · ' + h.time + '</span>' +
+             '<div class="history-row-content">' +
+               (setsText ? '<span class="history-sets">' + escapeHtml(setsText) + '</span>' : '') +
+               noteHtml +
+             '</div>' +
+           '</div>';
+  }).join('');
+}
+
+function updateHistoryCount(exKey, count) {
+  const countEl = document.getElementById(exKey + 'histcount');
+  const btnEl = document.getElementById(exKey + 'histbtn');
+  if (countEl) countEl.textContent = count;
+  if (btnEl) btnEl.classList.toggle('has-history', count > 0);
+}
+
+const SESSION_NOTES_KEY = 'cori_session_notes';
+
+async function loadSessionNotes() {
+  const raw = await storageGet(SESSION_NOTES_KEY);
+  if (!raw) return;
+  const notes = JSON.parse(raw);
+  const container = document.getElementById('notesSaved');
+  notes.forEach(n => {
+    const entry = document.createElement('div');
+    entry.className = 'note-entry';
+    entry.innerHTML = '<div class="note-date">' + n.date + '</div>' + escapeHtml(n.text);
+    container.appendChild(entry);
+  });
+}
+
+async function saveNote() {
+  const input = document.getElementById('newNote');
+  const container = document.getElementById('notesSaved');
+  const text = input.value.trim();
+  if (!text) return;
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' }) + ' · ' + now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+  const entry = document.createElement('div');
+  entry.className = 'note-entry';
+  entry.innerHTML = '<div class="note-date">' + dateStr + '</div>' + escapeHtml(text);
+  container.prepend(entry);
+  input.value = '';
+
+  const raw = await storageGet(SESSION_NOTES_KEY);
+  const notes = raw ? JSON.parse(raw) : [];
+  notes.unshift({ date: dateStr, text: text });
+  await storageSet(SESSION_NOTES_KEY, JSON.stringify(notes));
+}
+
+let activeMeal = 'Breakfast';
+
+function todayKey() {
+  const dateInput = document.getElementById('foodLogDate');
+  return dateInput && dateInput.value ? dateInput.value : new Date().toISOString().slice(0,10);
+}
+
+function foodStorageKey() {
+  return 'cori_foodlog:' + todayKey();
+}
+
+function selectMeal(btn) {
+  document.querySelectorAll('.meal-tag').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  activeMeal = btn.dataset.meal;
+}
+
+async function getDayRecord() {
+  const raw = await storageGet(foodStorageKey());
+  return raw ? JSON.parse(raw) : { entries: [], protein: '' };
+}
+
+async function saveDayRecord(record) {
+  await storageSet(foodStorageKey(), JSON.stringify(record));
+}
+
+async function addFood() {
+  const input = document.getElementById('foodInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const record = await getDayRecord();
+  record.entries.push({ meal: activeMeal, text: text, time: new Date().toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'}) });
+  await saveDayRecord(record);
+  renderFoodEntries(record.entries);
+  input.value = '';
+  input.focus();
+}
+
+async function deleteFood(idx) {
+  const record = await getDayRecord();
+  record.entries.splice(idx, 1);
+  await saveDayRecord(record);
+  renderFoodEntries(record.entries);
+}
+
+function renderFoodEntries(entries) {
+  const container = document.getElementById('foodEntries');
+  container.innerHTML = '';
+
+  if (!entries || entries.length === 0) {
+    container.innerHTML = '<div class="food-log-empty" id="foodEmptyMsg">No meals logged yet today — add your first one above</div>';
+    return;
+  }
+
+  entries.forEach((e, idx) => {
+    const row = document.createElement('div');
+    row.className = 'food-entry';
+    row.innerHTML =
+      '<div class="food-entry-left">' +
+        '<span class="food-entry-meal">' + escapeHtml(e.meal) + '</span>' +
+        '<span class="food-entry-name">' + escapeHtml(e.text) + '</span>' +
+      '</div>' +
+      '<button class="food-entry-del" onclick="deleteFood(' + idx + ')" title="Remove">×</button>';
+    container.appendChild(row);
+  });
+}
+
+async function updateProteinBar(skipSave) {
+  const input = document.getElementById('proteinCount');
+  const fill = document.getElementById('proteinBarFill');
+  const goalText = document.getElementById('proteinGoalText');
+  const val = parseFloat(input.value) || 0;
+  const goal = 140;
+  const pct = Math.min((val / goal) * 100, 100);
+  fill.style.width = pct + '%';
+  goalText.textContent = '/ ' + goal + 'g goal';
+  if (!skipSave) {
+    const record = await getDayRecord();
+    record.protein = input.value;
+    await saveDayRecord(record);
+  }
+}
+
+async function loadFoodLogForDate() {
+  const container = document.getElementById('foodEntries');
+  container.innerHTML = '<div class="food-log-empty">Loading...</div>';
+  const record = await getDayRecord();
+  renderFoodEntries(record.entries);
+  const proteinInput = document.getElementById('proteinCount');
+  proteinInput.value = record.protein || '';
+  updateProteinBar(true);
+}
+
+async function initFoodLog() {
+  const dateInput = document.getElementById('foodLogDate');
+  dateInput.value = new Date().toISOString().slice(0,10);
+  dateInput.addEventListener('change', loadFoodLogForDate);
+  await loadFoodLogForDate();
+}
+
+/* ════════════════════ INIT ════════════════════ */
+function showLoadingOverlay() {
+  const badge = document.createElement('div');
+  badge.id = 'loadingOverlay';
+  badge.style.cssText = 'position:fixed;bottom:14px;right:14px;background:#161616;border:1px solid #FF6B00;color:#FF6B00;font-size:0.65rem;font-weight:700;letter-spacing:1px;padding:8px 12px;border-radius:20px;z-index:9999;font-family:Inter,sans-serif;box-shadow:0 2px 10px rgba(0,0,0,0.4);';
+  badge.textContent = '⏳ SYNCING...';
+  document.body.appendChild(badge);
+}
+function hideLoadingOverlay() {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) overlay.remove();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Page is fully usable immediately — data fills in quietly in the background.
+  showLoadingOverlay();
+  await loadAllValuesCache();
+  await loadAllWeights();
+  await loadSessionNotes();
+  await initFoodLog();
+  hideLoadingOverlay();
+});
+</script>
+</body>
+</html>
